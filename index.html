@@ -63,7 +63,7 @@
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
+            gap: 8px; /* Adjusted gap */
         }
         .day-cell {
             aspect-ratio: 1;
@@ -75,7 +75,12 @@
             transition: all 0.2s;
             position: relative;
         }
-        /* Custom Hover Effects handled by Tailwind classes in JS now */
+        .day-cell.available:hover {
+            background-color: #e0f2fe;
+            transform: scale(1.05);
+            z-index: 10;
+            cursor: pointer;
+        }
 
         .time-slot-grid {
             display: grid;
@@ -106,7 +111,6 @@
 
     <header id="header" class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50 transition-all duration-300">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Updated Logo Link to Scroll Top -->
             <a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;" class="text-2xl font-serif font-bold text-brand-900 tracking-wider">自分書斎</a>
             
             <nav class="hidden md:flex space-x-8 items-center">
@@ -141,7 +145,7 @@
             <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
                 <p class="text-brand-100 font-bold tracking-[0.2em] mb-4 animate-on-scroll">IKEBUKURO, TOKYO</p>
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight animate-on-scroll">
-                    　静寂を、<br>　手に入れる。
+                    静寂を、<br>手に入れる。
                 </h1>
                 <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed animate-on-scroll">
                     誰にも邪魔されない、自分だけの時間。<br>
@@ -154,7 +158,6 @@
                 </div>
             </div>
 
-            <!-- Scroll Down Arrow: Centered properly -->
             <div class="absolute bottom-8 left-0 right-0 mx-auto w-6 animate-bounce text-white/70">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             </div>
@@ -167,7 +170,7 @@
                         <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="静かな書斎" class="rounded-lg shadow-2xl">
                     </div>
                     <div class="md:w-1/2 animate-on-scroll">
-                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-900 mb-6">「集中できない」を<br>　解決する場所。</h2>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-900 mb-6">「集中できない」を<br>解決する場所。</h2>
                         <p class="text-slate-600 leading-loose mb-6">
                             カフェは騒がしい。自宅は誘惑が多い。図書館は閉まるのが早い。<br>
                             「自分書斎」は、そんな悩みを抱えるあなたのための解決策です。
@@ -310,7 +313,7 @@
 
         <section class="py-20 bg-slate-100 text-center">
              <div class="container mx-auto px-6 animate-on-scroll">
-                <h2 class="text-3xl font-serif font-bold text-brand-900 mb-4">さあ、自分のための時間を</br>　始めよう。</h2>
+                <h2 class="text-3xl font-serif font-bold text-brand-900 mb-4">さあ、自分のための時間を始めよう。</h2>
                 <p class="text-slate-600 mb-8">まずは30分のドロップイン利用から。</p>
                 <div class="flex flex-col items-center gap-4">
                     <button onclick="window.openModal()" class="bg-brand-600 text-white font-bold py-4 px-12 rounded-full hover:bg-brand-700 transition transform hover:-translate-y-1 shadow-xl">
@@ -356,9 +359,9 @@
                         </svg>
                     </button>
 
-                    <div class="flex flex-col md:flex-row h-auto md:h-[600px]">
+                    <div class="flex flex-col md:flex-row flex-1 overflow-hidden h-full md:h-[600px]">
                         
-                        <div class="w-full md:w-1/2 p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-100 bg-gray-50 overflow-y-auto md:overflow-y-auto" id="calendar-section">
+                        <div class="w-full md:w-1/2 p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-100 bg-gray-50 overflow-y-auto md:block" id="calendar-section">
                             <h2 class="text-2xl font-bold text-gray-900 mb-2">予約日時を選択</h2>
                             <p class="text-sm text-gray-500 mb-6">ご希望の日付をタップしてください</p>
                             
@@ -384,7 +387,6 @@
                             <div id="calendar-days" class="calendar-grid text-sm">
                             </div>
                             
-                            <!-- Legend Updated -->
                             <div class="mt-6 flex items-center justify-center space-x-4 text-xs text-gray-500">
                                 <div class="flex items-center"><span class="w-3 h-3 bg-blue-100 border border-blue-200 rounded-sm mr-1"></span>余裕あり</div>
                                 <div class="flex items-center"><span class="w-3 h-3 bg-orange-100 border border-orange-200 rounded-sm mr-1"></span>混雑</div>
@@ -402,7 +404,7 @@
                             <div id="time-slot-selection" class="hidden h-full flex flex-col">
                                 <div class="flex items-center justify-between mb-2">
                                      <h3 class="text-xl font-bold text-gray-900" id="time-selection-date-display">--月--日</h3>
-                                     <button onclick="window.backToPlaceholder()" class="text-sm text-gray-400 hover:text-gray-600">戻る</button>
+                                     <button onclick="window.backToPlaceholder()" class="text-sm text-gray-400 hover:text-gray-600 md:hidden">戻る</button>
                                 </div>
                                 
                                 <p class="text-xs text-gray-500 mb-2">ご希望の開始時間を選択してください。<br>（〇: 1時間以上の空きあり / ×: 満席）</p>
@@ -763,10 +765,14 @@
             renderCalendar(); 
             document.body.style.overflow = 'hidden';
             
-            // Initial state for SP: Show Calendar, Hide Right Panel
-            calendarSection.classList.remove('hidden');
-            rightPanel.classList.add('hidden');
-            rightPanel.classList.remove('flex'); // Ensure flex is removed if it was added
+            // Reset view state based on screen size
+            if (window.innerWidth < 768) {
+                calendarSection.classList.remove('hidden');
+                rightPanel.classList.add('hidden');
+            } else {
+                calendarSection.classList.remove('hidden');
+                rightPanel.classList.remove('hidden');
+            }
             
             // Reset right panel content to placeholder
             formPlaceholder.classList.remove('hidden');
@@ -871,9 +877,15 @@
             window.generateTimeSlots();
             
             // Switch views based on device
-            // SP: Hide calendar, Show Right Panel (Time Selection)
-            calendarSection.classList.add('hidden');
-            rightPanel.classList.remove('hidden');
+            if (window.innerWidth < 768) {
+                // SP: Hide calendar, Show Right Panel
+                calendarSection.classList.add('hidden');
+                rightPanel.classList.remove('hidden');
+            } else {
+                // PC: Both visible
+                calendarSection.classList.remove('hidden');
+                rightPanel.classList.remove('hidden');
+            }
             
             // PC/SP Common: Update Right Panel Content
             formPlaceholder.classList.add('hidden');
@@ -980,13 +992,16 @@
         };
 
         window.backToPlaceholder = function() {
-            // SP: Show Calendar, Hide Right Panel
-            calendarSection.classList.remove('hidden');
-            rightPanel.classList.add('hidden');
-            
-            // PC/SP Common: Reset views
-            timeSlotSelection.classList.add('hidden');
-            formPlaceholder.classList.remove('hidden');
+            // Check screen size
+            if (window.innerWidth < 768) {
+                // SP: Show Calendar, Hide Right Panel
+                calendarSection.classList.remove('hidden');
+                rightPanel.classList.add('hidden');
+            } else {
+                // PC: Keep both, just reset right panel content
+                timeSlotSelection.classList.add('hidden');
+                formPlaceholder.classList.remove('hidden');
+            }
             
             // Reset selection styles
             document.querySelectorAll('.day-cell').forEach(el => {
@@ -1018,15 +1033,40 @@
             // Reset Form
             document.getElementById('booking-form').reset();
             
-            // Reset SP view state (Show calendar, Hide right panel)
-            calendarSection.classList.remove('hidden');
-            rightPanel.classList.add('hidden');
+            // Reset view visibility based on current size
+            if (window.innerWidth < 768) {
+                calendarSection.classList.remove('hidden');
+                rightPanel.classList.add('hidden');
+            } else {
+                calendarSection.classList.remove('hidden');
+                rightPanel.classList.remove('hidden');
+            }
         };
 
         function getDayName(dateStr) {
             const days = ['日', '月', '火', '水', '木', '金', '土'];
             return days[new Date(dateStr).getDay()];
         }
+        
+        // Resize Listener to fix layout when switching between PC/SP
+        window.addEventListener('resize', () => {
+             if (modal.classList.contains('hidden')) return;
+
+             if (window.innerWidth >= 768) {
+                 // Force show both panels on PC
+                 calendarSection.classList.remove('hidden');
+                 rightPanel.classList.remove('hidden');
+             } else {
+                 // On mobile, if we are in a "selected date" state (right panel has content other than placeholder), show right panel only
+                 if (formPlaceholder.classList.contains('hidden')) {
+                     calendarSection.classList.add('hidden');
+                     rightPanel.classList.remove('hidden');
+                 } else {
+                     calendarSection.classList.remove('hidden');
+                     rightPanel.classList.add('hidden');
+                 }
+             }
+        });
 
         document.getElementById('prev-month').addEventListener('click', () => {
             currentDate.setMonth(currentDate.getMonth() - 1);
