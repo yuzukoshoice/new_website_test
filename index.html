@@ -57,7 +57,7 @@
         
         .hero-pattern {
             background-color: #0c4a6e;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e6b96' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e6b96' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
         .calendar-grid {
@@ -79,6 +79,7 @@
             background-color: #e0f2fe;
             transform: scale(1.05);
             z-index: 10;
+            cursor: pointer; /* Explicit cursor pointer */
         }
 
         .time-slot-grid {
@@ -157,7 +158,8 @@
                 </div>
             </div>
 
-            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70">
+            <!-- Scroll Down Arrow: Centered properly -->
+            <div class="absolute bottom-8 left-0 right-0 mx-auto w-6 animate-bounce text-white/70">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             </div>
         </section>
@@ -312,8 +314,8 @@
 
         <section class="py-20 bg-slate-100 text-center">
              <div class="container mx-auto px-6 animate-on-scroll">
-                <h2 class="text-3xl font-serif font-bold text-brand-900 mb-4">さあ、自分のための時間を始めよう。</h2>
-                <p class="text-slate-600 mb-8">まずは30分のドロップイン利用から。</p>
+                <h2 class="text-3xl font-serif font-bold text-brand-900 mb-4">　さあ、自分のための時間を始めよう。</h2>
+                <p class="text-slate-600 mb-8">　まずは30分のドロップイン利用から。</p>
                 <div class="flex flex-col items-center gap-4">
                     <button onclick="window.openModal()" class="bg-brand-600 text-white font-bold py-4 px-12 rounded-full hover:bg-brand-700 transition transform hover:-translate-y-1 shadow-xl">
                         席を予約する
