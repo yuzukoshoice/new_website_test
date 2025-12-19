@@ -363,7 +363,7 @@
             </div>
         </div>
         <div class="text-center text-brand-400 text-xs mt-8">
-            &copy; 2025 Jibun Shosai. All rights reserved.
+            &copy; 2024 Jibun Shosai. All rights reserved.
         </div>
     </footer>
 
@@ -512,6 +512,7 @@
         import { getFirestore, collection, addDoc, onSnapshot, query, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
 
         // --- Firebase Init ---
+        // このコードブロックは、Firebaseの初期化と認証処理を行います。
         const firebaseConfig = {
           apiKey: "AIzaSyC-vtk-kUQQI6VDuddmMrTyX--6XgapGWM",
           authDomain: "jibun-shosai-booking.firebaseapp.com",
@@ -528,7 +529,7 @@
         const db = getFirestore(app);
 
         let currentUser = null;
-        let allBookings = []; 
+        let allBookings = []; // Firestoreから取得した全予約データ
 
         // 認証フロー
         const initAuth = async () => {
@@ -547,19 +548,27 @@
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 currentUser = user;
+                // 認証完了後に予約データの監視を開始
                 subscribeToBookings();
             }
         });
 
         // --- Firestore Logic ---
+
+        // 予約データの監視 (Real-time Listener)
         function subscribeToBookings() {
+            // パスルールに従い、パブリックな予約データにアクセス
             const q = query(collection(db, 'bookings'));
+            
             onSnapshot(q, (snapshot) => {
                 allBookings = [];
                 snapshot.forEach((doc) => {
                     allBookings.push(doc.data());
                 });
+                // データ更新時にUI再描画
+                // もしカレンダーや時間選択が開いていれば更新する
                 renderCalendar();
+                // 時間選択画面が開いている場合は、スロットも更新する
                 if (!document.getElementById('time-slot-selection').classList.contains('hidden')) {
                     generateTimeSlots();
                 }
@@ -568,6 +577,7 @@
             });
         }
 
+        // 予約の実行
         async function submitBooking(bookingData) {
             if (!currentUser) return;
 
@@ -575,30 +585,39 @@
             const btnText = btn.querySelector('.btn-text');
             const spinner = btn.querySelector('.spinner');
             
+            // UI Loading State
             btn.disabled = true;
             btnText.textContent = '処理中...';
             spinner.classList.remove('hidden');
 
             try {
+                // 1. 予約データをFirestoreに保存
                 await addDoc(collection(db, 'bookings'), {
                     ...bookingData,
                     createdAt: serverTimestamp(),
                     userId: currentUser.uid
                 });
 
+                // 2. EmailJSでメール送信
                 const serviceID = "jibunshosai_mail";
                 const templateID = "template_sjacg2l";
+
+                // durationを読みやすい文字列に変換
+                const hours = bookingData.duration / 60;
+                const durationStr = Number.isInteger(hours) ? `${hours}時間` : `${hours}時間`; // 1.5時間などもそのまま表示可
 
                 const templateParams = {
                     name: bookingData.name,
                     email: bookingData.email,
                     plan: bookingData.plan,
                     date: bookingData.date,
-                    time: `${bookingData.time} (利用時間: ${bookingData.duration}分)`
+                    time: bookingData.time,
+                    duration_str: durationStr
                 };
 
                 await emailjs.send(serviceID, templateID, templateParams);
 
+                // Success UI
                 document.getElementById('booking-form-container').classList.add('hidden');
                 document.getElementById('success-view').classList.remove('hidden');
 
@@ -606,6 +625,7 @@
                 console.error("Booking Failed:", error);
                 alert("予約処理に失敗しました。もう一度お試しください。");
             } finally {
+                // Reset UI
                 btn.disabled = false;
                 btnText.textContent = '予約を確定する';
                 spinner.classList.add('hidden');
@@ -613,17 +633,22 @@
         }
 
         // --- UI Logic (Global Scope) ---
+        // type="module" なので window オブジェクトに割り当てて HTML から呼べるようにする
+
+        // DOM Elements
         const modal = document.getElementById('booking-modal');
         const backdrop = document.getElementById('modal-backdrop');
         const panel = document.getElementById('modal-panel');
         const calendarDaysEl = document.getElementById('calendar-days');
         const monthYearEl = document.getElementById('month-year');
         
+        // Views
         const formPlaceholder = document.getElementById('form-placeholder');
         const timeSlotSelection = document.getElementById('time-slot-selection');
         const bookingFormContainer = document.getElementById('booking-form-container');
         const successView = document.getElementById('success-view');
 
+        // Dynamic Elements
         const timeSelectionDateDisplay = document.getElementById('time-selection-date-display');
         const timeSlotsContainer = document.getElementById('time-slots-container');
         const formDateDisplay = document.getElementById('form-date-display');
@@ -631,20 +656,25 @@
         const formDurationSelect = document.getElementById('form-duration-select');
         
         let currentDate = new Date();
-        let selectedDateString = ''; 
-        const TOTAL_SEATS = 8; 
+        let selectedDateString = ''; // YYYY-MM-DD
+        const TOTAL_SEATS = 8; // 定員
 
         // --- Helper Function: Availability Calculation ---
         function calculateDailyAvailability(dateStr) {
-            // 0: 8:00, 29: 22:30 (30 slots)
+            // 8:00 (480min) から 23:00 (1380min) までの30分ごとの予約数を計算
+            // Array size: (23-8)*2 = 30 slots. 
+            // 0: 8:00, 1: 8:30, ..., 29: 22:30
             const slots = new Array(30).fill(0);
             const startHour = 8;
 
+            // Filter bookings for the selected date
             const daysBookings = allBookings.filter(b => b.date === dateStr);
 
             daysBookings.forEach(b => {
                 const [h, m] = b.time.split(':').map(Number);
                 const startSlotIndex = (h - startHour) * 2 + (m === 30 ? 1 : 0);
+                
+                // durationから占有するスロット数を計算 (default 60min = 2 slots)
                 const duration = b.duration || 60;
                 const slotsToOccupy = Math.ceil(duration / 30);
 
@@ -657,6 +687,8 @@
             return slots;
         }
 
+
+        // --- Modal Functions ---
         window.openModal = function() {
             modal.classList.remove('hidden');
             setTimeout(() => {
@@ -664,7 +696,7 @@
                 panel.classList.remove('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
                 panel.classList.add('opacity-100', 'translate-y-0', 'sm:scale-100');
             }, 10);
-            renderCalendar(); 
+            renderCalendar(); // Open時に再描画
         };
 
         window.closeModal = function() {
@@ -677,6 +709,7 @@
             }, 300);
         };
 
+        // --- Calendar Logic ---
         window.renderCalendar = function() {
             calendarDaysEl.innerHTML = '';
             const year = currentDate.getFullYear();
@@ -687,16 +720,21 @@
             const firstDay = new Date(year, month, 1).getDay();
             const daysInMonth = new Date(year, month + 1, 0).getDate();
 
+            // Blanks
             for (let i = 0; i < firstDay; i++) {
                 calendarDaysEl.appendChild(document.createElement('div'));
             }
 
+            // Days
             for (let i = 1; i <= daysInMonth; i++) {
                 const dayEl = document.createElement('div');
                 const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`;
                 
                 dayEl.className = 'day-cell p-2 text-center cursor-pointer rounded-lg hover:bg-gray-100 relative';
                 dayEl.innerHTML = `<span class="z-10 relative">${i}</span>`;
+                
+                // 簡易表示: 予約があるかどうかだけで判定せず、空きがあるかどうかも厳密には計算可能だが
+                // カレンダー表示時点では「選択可能」としておき、詳細選択でブロックするスタイルを維持
                 
                 dayEl.classList.add('available', 'text-gray-700');
                 dayEl.addEventListener('click', () => window.selectDate(dateStr, i));
@@ -712,12 +750,14 @@
             
             timeSelectionDateDisplay.textContent = displayDate;
             
+            // Highlight Grid
             document.querySelectorAll('.day-cell').forEach(el => el.classList.remove('bg-brand-500', 'text-white'));
             event.target.closest('.day-cell').classList.add('bg-brand-500', 'text-white');
             event.target.closest('.day-cell').classList.remove('text-gray-700');
 
             window.generateTimeSlots();
             
+            // View Transition
             formPlaceholder.classList.add('hidden');
             bookingFormContainer.classList.add('hidden');
             successView.classList.add('hidden');
@@ -731,8 +771,8 @@
             const slotsNeeded = 2; // 60 min = 2 slots
             const dailySlots = calculateDailyAvailability(selectedDateString);
 
-            const startTime = 8 * 60; 
-            const endTime = 23 * 60;  
+            const startTime = 8 * 60; // 8:00
+            const endTime = 23 * 60;  // 23:00
             // Last booking must end by 23:00, so last start is 22:00 (for 60min)
             const maxStartIndex = dailySlots.length - slotsNeeded;
 
@@ -742,6 +782,8 @@
                 const minute = time % 60;
                 const timeStr = `${hour}:${minute.toString().padStart(2, '0')}`;
                 
+                // 指定期間 (i から i + slotsNeeded) の間で、最大予約数を探す
+                // 期間中のどの30分枠も、定員に達していない必要がある
                 let maxOccupancyInPeriod = 0;
                 for (let j = 0; j < slotsNeeded; j++) {
                     if (dailySlots[i + j] > maxOccupancyInPeriod) {
