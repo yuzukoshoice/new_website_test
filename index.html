@@ -111,7 +111,8 @@
 
     <header id="header" class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50 transition-all duration-300">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-serif font-bold text-brand-900 tracking-wider">自分書斎</a>
+            <!-- Updated Logo Link to Scroll Top -->
+            <a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;" class="text-2xl font-serif font-bold text-brand-900 tracking-wider">自分書斎</a>
             
             <nav class="hidden md:flex space-x-8 items-center">
                 <a href="#concept" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition">コンセプト</a>
@@ -158,6 +159,7 @@
                 </div>
             </div>
 
+            <!-- Scroll Down Arrow: Centered properly -->
             <div class="absolute bottom-8 left-0 right-0 mx-auto w-6 animate-bounce text-white/70">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             </div>
