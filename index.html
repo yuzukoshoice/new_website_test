@@ -146,7 +146,7 @@
             <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
                 <p class="text-brand-100 font-bold tracking-[0.2em] mb-4 animate-on-scroll">IKEBUKURO, TOKYO</p>
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight animate-on-scroll">
-                    静寂を、<br>手に入れる。
+                    　静寂を、<br>　手に入れる。
                 </h1>
                 <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed animate-on-scroll">
                     誰にも邪魔されない、自分だけの時間。<br>
@@ -172,7 +172,7 @@
                         <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="静かな書斎" class="rounded-lg shadow-2xl">
                     </div>
                     <div class="md:w-1/2 animate-on-scroll">
-                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-900 mb-6">「集中できない」を<br>解決する場所。</h2>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-900 mb-6">「集中できない」を<br>　解決する場所。</h2>
                         <p class="text-slate-600 leading-loose mb-6">
                             カフェは騒がしい。自宅は誘惑が多い。図書館は閉まるのが早い。<br>
                             「自分書斎」は、そんな悩みを抱えるあなたのための解決策です。
@@ -353,7 +353,8 @@
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
                 
-                <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-4xl opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" id="modal-panel">
+                <!-- Updated: Added flex-col and max-h-[90vh] for mobile responsiveness -->
+                <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-4xl opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95 flex flex-col max-h-[90vh] md:h-auto" id="modal-panel">
                     
                     <button onclick="window.closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 z-10">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -361,9 +362,11 @@
                         </svg>
                     </button>
 
-                    <div class="flex flex-col md:flex-row h-auto md:h-[600px]">
+                    <!-- Updated: Added flex-1 and overflow-hidden to contain scrollable areas -->
+                    <div class="flex flex-col md:flex-row flex-1 overflow-hidden h-full md:h-[600px]">
                         
-                        <div class="w-full md:w-1/2 p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-100 bg-gray-50 overflow-y-auto md:overflow-y-auto" id="calendar-section">
+                        <!-- Left: Calendar View (Scrollable) -->
+                        <div class="w-full md:w-1/2 p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-100 bg-gray-50 overflow-y-auto" id="calendar-section">
                             <h2 class="text-2xl font-bold text-gray-900 mb-2">予約日時を選択</h2>
                             <p class="text-sm text-gray-500 mb-6">ご希望の日付をタップしてください</p>
                             
@@ -395,9 +398,10 @@
                             </div>
                         </div>
 
-                        <div class="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-center bg-white relative">
+                        <!-- Right: Interactive Panel (Scrollable) -->
+                        <div class="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-center bg-white relative overflow-y-auto">
                             
-                            <div id="form-placeholder" class="text-center text-gray-400 flex flex-col items-center justify-center h-full">
+                            <div id="form-placeholder" class="text-center text-gray-400 flex flex-col items-center justify-center h-full min-h-[200px]">
                                 <svg class="w-16 h-16 mb-4 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                                 <p>左のカレンダーから<br>日付を選択してください</p>
                             </div>
@@ -434,31 +438,7 @@
                                         </select>
                                     </div>
 
-                                    <div>
-                                        <label class="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wide">利用時間</label>
-                                        <select id="form-duration-select" required class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-500 focus:bg-white transition outline-none">
-                                        </select>
-                                    </div>
-
-                                    <div>
-                                        <label class="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wide">お名前</label>
-                                        <input type="text" id="name-input" required class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-500 focus:bg-white transition outline-none" placeholder="山田 太郎">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wide">メールアドレス</label>
-                                        <input type="email" id="email-input" required class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-500 focus:bg-white transition outline-none" placeholder="taro@example.com">
-                                    </div>
-                                    
-                                    <div class="pt-4 mt-auto">
-                                        <button type="submit" id="submit-btn" class="w-full bg-brand-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-brand-700 transition shadow-md hover:shadow-lg transform active:scale-95 flex items-center justify-center">
-                                            <span class="btn-text">予約を確定する</span>
-                                            <div class="spinner hidden ml-2"></div>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div id="success-view" class="hidden h-full flex flex-col items-center justify-center text-center animate-pulse-once">
+                            <div id="success-view" class="hidden h-full flex flex-col items-center justify-center text-center animate-pulse-once min-h-[300px]">
                                 <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mb-4">
                                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 </div>
@@ -479,17 +459,24 @@
         <div class="fixed inset-0 bg-gray-900/75 backdrop-blur-sm transition-opacity opacity-0" id="info-modal-backdrop"></div>
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full items-center justify-center p-4">
-                <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:w-full sm:max-w-lg opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" id="info-modal-panel">
-                    <div class="px-6 py-6 border-b border-gray-100 flex justify-between items-center">
+                <!-- Updated: Added flex-col and max-h-[90vh] to keep modal within viewport -->
+                <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:w-full sm:max-w-lg opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95 flex flex-col max-h-[90vh]" id="info-modal-panel">
+                    
+                    <!-- Header: Added shrink-0 to prevent collapsing -->
+                    <div class="px-6 py-6 border-b border-gray-100 flex justify-between items-center shrink-0">
                         <h3 class="text-lg font-bold text-gray-900" id="info-modal-title"></h3>
                         <button onclick="window.closeInfoModal()" class="text-gray-400 hover:text-gray-600">
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                         </button>
                     </div>
-                    <div class="p-6 overflow-y-auto max-h-[70vh] text-sm text-gray-600 leading-relaxed" id="info-modal-content">
+
+                    <!-- Content: Changed to flex-1 and removed fixed max-height to allow dynamic scrolling -->
+                    <div class="p-6 overflow-y-auto text-sm text-gray-600 leading-relaxed flex-1" id="info-modal-content">
                         <!-- Content injected via JS -->
                     </div>
-                    <div class="bg-gray-50 px-6 py-4 flex justify-end">
+
+                    <!-- Footer: Added shrink-0 -->
+                    <div class="bg-gray-50 px-6 py-4 flex justify-end shrink-0">
                         <button onclick="window.closeInfoModal()" class="bg-brand-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-brand-700 transition">閉じる</button>
                     </div>
                 </div>
