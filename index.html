@@ -13,10 +13,10 @@
                         brand: {
                             50: '#f0f9ff',
                             100: '#e0f2fe',
-                            500: '#0ea5e9', // Sky blue
+                            500: '#0ea5e9',
                             600: '#0284c7',
                             800: '#075985',
-                            900: '#0c4a6e', // Deep Navy
+                            900: '#0c4a6e',
                         }
                     },
                     fontFamily: {
@@ -31,11 +31,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
-            // EmailJSの初期化
             emailjs.init({
               publicKey: "HUaMYbM5_y2_C70Ki",
             });
@@ -43,7 +41,6 @@
     </script>
 
     <style>
-        /* カスタムアニメーション */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -63,7 +60,6 @@
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e6b96' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
-        /* 予約カレンダー用スタイル */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -85,19 +81,17 @@
             z-index: 10;
         }
 
-        /* 時間枠ボタン用グリッド */
         .time-slot-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3列表示 */
+            grid-template-columns: repeat(3, 1fr);
             gap: 8px;
         }
         @media (max-width: 640px) {
             .time-slot-grid {
-                grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
-        /* Loading Spinner */
         .spinner {
             border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
@@ -114,7 +108,6 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased">
 
-    <!-- ナビゲーション -->
     <header id="header" class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50 transition-all duration-300">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-serif font-bold text-brand-900 tracking-wider">自分書斎</a>
@@ -129,13 +122,11 @@
                 </button>
             </nav>
 
-            <!-- モバイルメニューボタン -->
             <button class="md:hidden text-brand-900 focus:outline-none" id="menu-btn">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
         
-        <!-- モバイルメニュー -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full">
             <div class="px-6 py-4 space-y-3">
                 <a href="#concept" class="block text-slate-600 hover:text-brand-600">コンセプト</a>
@@ -147,15 +138,13 @@
     </header>
 
     <main>
-        <!-- ヒーローセクション -->
         <section class="relative h-screen flex items-center justify-center overflow-hidden">
-            <!-- 背景画像（相対パスに変更済み: ./images/shop-interior.png） -->
             <div class="absolute inset-0 bg-cover bg-center z-0 scale-105" style="background-image: url('./images/shop-interior.png'); filter: brightness(0.6);"></div>
             
             <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
                 <p class="text-brand-100 font-bold tracking-[0.2em] mb-4 animate-on-scroll">IKEBUKURO, TOKYO</p>
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight animate-on-scroll">
-                    静寂を、<br>手に入れる。
+                    　静寂を、<br>　手に入れる。
                 </h1>
                 <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed animate-on-scroll">
                     誰にも邪魔されない、自分だけの時間。<br>
@@ -168,13 +157,11 @@
                 </div>
             </div>
 
-            <!-- スクロールダウン誘導 -->
             <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             </div>
         </section>
 
-        <!-- コンセプト -->
         <section id="concept" class="py-24 bg-white">
             <div class="container mx-auto px-6">
                 <div class="flex flex-col md:flex-row items-center gap-12">
@@ -182,7 +169,7 @@
                         <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="静かな書斎" class="rounded-lg shadow-2xl">
                     </div>
                     <div class="md:w-1/2 animate-on-scroll">
-                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-900 mb-6">「集中できない」を<br>解決する場所。</h2>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-900 mb-6">「集中できない」を<br>　解決する場所。</h2>
                         <p class="text-slate-600 leading-loose mb-6">
                             カフェは騒がしい。自宅は誘惑が多い。図書館は閉まるのが早い。<br>
                             「自分書斎」は、そんな悩みを抱えるあなたのための解決策です。
@@ -197,7 +184,6 @@
             </div>
         </section>
 
-        <!-- 特徴 -->
         <section id="features" class="py-24 bg-slate-50">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 animate-on-scroll">
@@ -206,7 +192,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Feature 1 -->
                     <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 animate-on-scroll">
                         <div class="w-14 h-14 bg-brand-100 rounded-2xl flex items-center justify-center text-brand-600 mb-6">
                             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
@@ -215,27 +200,22 @@
                         <p class="text-slate-600 text-sm leading-relaxed">全ての席に電源2口とUSBポートを完備。NURO光回線でWeb会議も快適です。</p>
                     </div>
                     
-                    <!-- Feature 2: PC/Calculator -->
                     <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 animate-on-scroll" style="transition-delay: 100ms;">
                         <div class="w-14 h-14 bg-brand-100 rounded-2xl flex items-center justify-center text-brand-600 mb-6">
-                            <!-- PC Icon -->
                             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         </div>
                         <h3 class="text-lg font-bold mb-3">電卓・PC利用OK</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">音の出る作業も気兼ねなく。集中できる環境を提供します。</p>
                     </div>
 
-                    <!-- Feature 3: Food/Drink -->
                     <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 animate-on-scroll" style="transition-delay: 200ms;">
                         <div class="w-14 h-14 bg-brand-100 rounded-2xl flex items-center justify-center text-brand-600 mb-6">
-                            <!-- Drink Icon -->
                             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z M6 1v3 M10 1v3 M14 1v3"></path></svg>
                         </div>
                         <h3 class="text-lg font-bold mb-3">飲食物持ち込み自由</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">お好きな飲み物やお菓子と一緒に。リラックスして作業に取り組めます。</p>
                     </div>
 
-                    <!-- Feature 4 -->
                     <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 animate-on-scroll" style="transition-delay: 300ms;">
                         <div class="w-14 h-14 bg-brand-100 rounded-2xl flex items-center justify-center text-brand-600 mb-6">
                             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
@@ -247,9 +227,7 @@
             </div>
         </section>
 
-        <!-- 料金プラン -->
         <section id="plans" class="py-24 bg-brand-900 text-white relative overflow-hidden">
-            <!-- 背景装飾 -->
             <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none hero-pattern"></div>
 
             <div class="container mx-auto px-6 relative z-10">
@@ -259,7 +237,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <!-- Drop-in -->
                     <div class="bg-brand-800/50 backdrop-blur-sm border border-brand-700 rounded-2xl p-8 flex flex-col hover:bg-brand-800 transition animate-on-scroll">
                         <h3 class="text-xl font-bold mb-2">ドロップイン</h3>
                         <p class="text-brand-300 text-sm mb-6">少しだけ使いたい時に</p>
@@ -273,7 +250,6 @@
                         <button onclick="window.openModal()" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3 rounded-lg transition">予約する</button>
                     </div>
 
-                    <!-- Monthly (Featured) -->
                     <div class="bg-white text-slate-800 rounded-2xl p-8 flex flex-col shadow-2xl transform scale-105 relative z-10 animate-on-scroll">
                         <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-yellow-500 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wide">Most Popular</div>
                         <h3 class="text-xl font-bold mb-2 text-brand-900">月額使い放題</h3>
@@ -289,7 +265,6 @@
                         <button onclick="window.openModal()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-lg shadow-lg transition">今すぐ申し込む</button>
                     </div>
 
-                    <!-- Ticket -->
                     <div class="bg-brand-800/50 backdrop-blur-sm border border-brand-700 rounded-2xl p-8 flex flex-col hover:bg-brand-800 transition animate-on-scroll">
                         <h3 class="text-xl font-bold mb-2">回数券</h3>
                         <p class="text-brand-300 text-sm mb-6">週に数回ペースの方に</p>
@@ -306,12 +281,10 @@
             </div>
         </section>
 
-        <!-- アクセス -->
         <section id="access" class="py-24 bg-white">
             <div class="container mx-auto px-6">
                  <div class="flex flex-col-reverse md:flex-row gap-12">
                      <div class="md:w-1/2 h-80 md:h-auto rounded-2xl overflow-hidden shadow-lg animate-on-scroll">
-                        <!-- Google Maps Embed -->
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.6567990176885!2d139.70999617592758!3d35.73143577257116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d5e1c841121%3A0x6a12b9185458064a!2z5rGg6KKL6aeF!5e0!3m2!1sja!2sjp!4v1709600000000!5m2!1sja!2sjp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                      </div>
                      <div class="md:w-1/2 flex flex-col justify-center animate-on-scroll">
@@ -337,7 +310,6 @@
             </div>
         </section>
 
-        <!-- CTA -->
         <section class="py-20 bg-slate-100 text-center">
              <div class="container mx-auto px-6 animate-on-scroll">
                 <h2 class="text-3xl font-serif font-bold text-brand-900 mb-4">さあ、自分のための時間を始めよう。</h2>
@@ -349,7 +321,6 @@
         </section>
     </main>
 
-    <!-- フッター -->
     <footer class="bg-brand-900 text-white py-12 border-t border-brand-800">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
             <div class="mb-6 md:mb-0 text-center md:text-left">
@@ -368,18 +339,14 @@
     </footer>
 
 
-    <!-- 予約モーダル (Full Screen Overlay) -->
     <div id="booking-modal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <!-- Backdrop -->
         <div class="fixed inset-0 bg-gray-900/75 backdrop-blur-sm transition-opacity opacity-0" id="modal-backdrop"></div>
 
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
                 
-                <!-- Modal Panel -->
                 <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-4xl opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" id="modal-panel">
                     
-                    <!-- Close Button -->
                     <button onclick="window.closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 z-10">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -388,12 +355,10 @@
 
                     <div class="flex flex-col md:flex-row h-[80vh] md:h-[600px]">
                         
-                        <!-- Left: Calendar View -->
                         <div class="w-full md:w-1/2 p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-100 bg-gray-50 overflow-y-auto" id="calendar-section">
                             <h2 class="text-2xl font-bold text-gray-900 mb-2">予約日時を選択</h2>
                             <p class="text-sm text-gray-500 mb-6">ご希望の日付をタップしてください</p>
                             
-                            <!-- Month Navigation -->
                             <div class="flex justify-between items-center mb-6 bg-white p-3 rounded-lg shadow-sm">
                                 <button id="prev-month" class="p-2 rounded-full hover:bg-gray-100 text-gray-600 transition">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
@@ -404,7 +369,6 @@
                                 </button>
                             </div>
 
-                            <!-- Calendar Grid -->
                             <div class="calendar-grid mb-2">
                                 <div class="text-xs font-bold text-gray-400 text-center">日</div>
                                 <div class="text-xs font-bold text-gray-400 text-center">月</div>
@@ -415,7 +379,6 @@
                                 <div class="text-xs font-bold text-gray-400 text-center">土</div>
                             </div>
                             <div id="calendar-days" class="calendar-grid text-sm">
-                                <!-- JS Injected -->
                             </div>
                             
                             <div class="mt-6 flex items-center justify-center space-x-4 text-xs text-gray-500">
@@ -424,16 +387,13 @@
                             </div>
                         </div>
 
-                        <!-- Right: Interactive Panel (Placeholder -> Time Slots -> Form -> Success) -->
                         <div class="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-center bg-white relative">
                             
-                            <!-- 1. Placeholder State -->
                             <div id="form-placeholder" class="text-center text-gray-400 flex flex-col items-center justify-center h-full">
                                 <svg class="w-16 h-16 mb-4 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                                 <p>左のカレンダーから<br>日付を選択してください</p>
                             </div>
 
-                            <!-- 2. Time Slot Selection State -->
                             <div id="time-slot-selection" class="hidden h-full flex flex-col">
                                 <div class="flex items-center justify-between mb-2">
                                      <h3 class="text-xl font-bold text-gray-900" id="time-selection-date-display">--月--日</h3>
@@ -443,11 +403,9 @@
                                 <p class="text-xs text-gray-500 mb-2">ご希望の開始時間を選択してください。<br>（〇: 1時間以上の空きあり / ×: 満席）</p>
                                 
                                 <div id="time-slots-container" class="time-slot-grid overflow-y-auto pr-2 flex-grow">
-                                    <!-- JS Generated Time Slots -->
                                 </div>
                             </div>
 
-                            <!-- 3. Active Form State -->
                             <div id="booking-form-container" class="hidden h-full flex flex-col">
                                 <div class="flex items-center justify-between mb-4">
                                     <h3 class="text-xl font-bold text-gray-900" id="form-date-display">--月--日 --:--</h3>
@@ -458,11 +416,9 @@
                                 <form id="booking-form" class="space-y-4 flex-grow overflow-y-auto pr-2">
                                     <input type="hidden" id="selected-time-input" name="time">
                                     
-                                    <!-- Dynamic Duration Select -->
                                     <div>
                                         <label class="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wide">利用時間</label>
                                         <select id="form-duration-select" required class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-500 focus:bg-white transition outline-none">
-                                            <!-- JS populated -->
                                         </select>
                                     </div>
 
@@ -475,7 +431,6 @@
                                         <input type="email" id="email-input" required class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-500 focus:bg-white transition outline-none" placeholder="taro@example.com">
                                     </div>
                                     
-                                    <!-- Hidden Plan Info (Fixed as Drop-in for this flow) -->
                                     <input type="hidden" id="plan-display" value="ドロップイン">
 
                                     <div class="pt-4 mt-auto">
@@ -487,7 +442,6 @@
                                 </form>
                             </div>
 
-                            <!-- 4. Success State -->
                             <div id="success-view" class="hidden h-full flex flex-col items-center justify-center text-center animate-pulse-once">
                                 <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mb-4">
                                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
@@ -504,15 +458,12 @@
         </div>
     </div>
 
-    <!-- Firebase Script -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
         import { getAnalytics } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js';
         import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
         import { getFirestore, collection, addDoc, onSnapshot, query, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
 
-        // --- Firebase Init ---
-        // このコードブロックは、Firebaseの初期化と認証処理を行います。
         const firebaseConfig = {
           apiKey: "AIzaSyC-vtk-kUQQI6VDuddmMrTyX--6XgapGWM",
           authDomain: "jibun-shosai-booking.firebaseapp.com",
@@ -529,9 +480,8 @@
         const db = getFirestore(app);
 
         let currentUser = null;
-        let allBookings = []; // Firestoreから取得した全予約データ
+        let allBookings = []; 
 
-        // 認証フロー
         const initAuth = async () => {
           try {
             if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
@@ -548,16 +498,11 @@
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 currentUser = user;
-                // 認証完了後に予約データの監視を開始
                 subscribeToBookings();
             }
         });
 
-        // --- Firestore Logic ---
-
-        // 予約データの監視 (Real-time Listener)
         function subscribeToBookings() {
-            // パスルールに従い、パブリックな予約データにアクセス
             const q = query(collection(db, 'bookings'));
             
             onSnapshot(q, (snapshot) => {
@@ -565,10 +510,7 @@
                 snapshot.forEach((doc) => {
                     allBookings.push(doc.data());
                 });
-                // データ更新時にUI再描画
-                // もしカレンダーや時間選択が開いていれば更新する
                 renderCalendar();
-                // 時間選択画面が開いている場合は、スロットも更新する
                 if (!document.getElementById('time-slot-selection').classList.contains('hidden')) {
                     generateTimeSlots();
                 }
@@ -577,7 +519,6 @@
             });
         }
 
-        // 予約の実行
         async function submitBooking(bookingData) {
             if (!currentUser) return;
 
@@ -585,26 +526,22 @@
             const btnText = btn.querySelector('.btn-text');
             const spinner = btn.querySelector('.spinner');
             
-            // UI Loading State
             btn.disabled = true;
             btnText.textContent = '処理中...';
             spinner.classList.remove('hidden');
 
             try {
-                // 1. 予約データをFirestoreに保存
                 await addDoc(collection(db, 'bookings'), {
                     ...bookingData,
                     createdAt: serverTimestamp(),
                     userId: currentUser.uid
                 });
 
-                // 2. EmailJSでメール送信
                 const serviceID = "jibunshosai_mail";
                 const templateID = "template_sjacg2l";
 
-                // durationを読みやすい文字列に変換
                 const hours = bookingData.duration / 60;
-                const durationStr = Number.isInteger(hours) ? `${hours}時間` : `${hours}時間`; // 1.5時間などもそのまま表示可
+                const durationStr = Number.isInteger(hours) ? `${hours}時間` : `${hours}時間`;
 
                 const templateParams = {
                     name: bookingData.name,
@@ -617,7 +554,6 @@
 
                 await emailjs.send(serviceID, templateID, templateParams);
 
-                // Success UI
                 document.getElementById('booking-form-container').classList.add('hidden');
                 document.getElementById('success-view').classList.remove('hidden');
 
@@ -625,30 +561,23 @@
                 console.error("Booking Failed:", error);
                 alert("予約処理に失敗しました。もう一度お試しください。");
             } finally {
-                // Reset UI
                 btn.disabled = false;
                 btnText.textContent = '予約を確定する';
                 spinner.classList.add('hidden');
             }
         }
 
-        // --- UI Logic (Global Scope) ---
-        // type="module" なので window オブジェクトに割り当てて HTML から呼べるようにする
-
-        // DOM Elements
         const modal = document.getElementById('booking-modal');
         const backdrop = document.getElementById('modal-backdrop');
         const panel = document.getElementById('modal-panel');
         const calendarDaysEl = document.getElementById('calendar-days');
         const monthYearEl = document.getElementById('month-year');
         
-        // Views
         const formPlaceholder = document.getElementById('form-placeholder');
         const timeSlotSelection = document.getElementById('time-slot-selection');
         const bookingFormContainer = document.getElementById('booking-form-container');
         const successView = document.getElementById('success-view');
 
-        // Dynamic Elements
         const timeSelectionDateDisplay = document.getElementById('time-selection-date-display');
         const timeSlotsContainer = document.getElementById('time-slots-container');
         const formDateDisplay = document.getElementById('form-date-display');
@@ -656,25 +585,19 @@
         const formDurationSelect = document.getElementById('form-duration-select');
         
         let currentDate = new Date();
-        let selectedDateString = ''; // YYYY-MM-DD
-        const TOTAL_SEATS = 8; // 定員
+        let selectedDateString = ''; 
+        const TOTAL_SEATS = 8; 
 
-        // --- Helper Function: Availability Calculation ---
         function calculateDailyAvailability(dateStr) {
-            // 8:00 (480min) から 23:00 (1380min) までの30分ごとの予約数を計算
-            // Array size: (23-8)*2 = 30 slots. 
-            // 0: 8:00, 1: 8:30, ..., 29: 22:30
             const slots = new Array(30).fill(0);
             const startHour = 8;
 
-            // Filter bookings for the selected date
             const daysBookings = allBookings.filter(b => b.date === dateStr);
 
             daysBookings.forEach(b => {
                 const [h, m] = b.time.split(':').map(Number);
                 const startSlotIndex = (h - startHour) * 2 + (m === 30 ? 1 : 0);
                 
-                // durationから占有するスロット数を計算 (default 60min = 2 slots)
                 const duration = b.duration || 60;
                 const slotsToOccupy = Math.ceil(duration / 30);
 
@@ -687,8 +610,6 @@
             return slots;
         }
 
-
-        // --- Modal Functions ---
         window.openModal = function() {
             modal.classList.remove('hidden');
             setTimeout(() => {
@@ -696,7 +617,7 @@
                 panel.classList.remove('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
                 panel.classList.add('opacity-100', 'translate-y-0', 'sm:scale-100');
             }, 10);
-            renderCalendar(); // Open時に再描画
+            renderCalendar(); 
         };
 
         window.closeModal = function() {
@@ -709,7 +630,6 @@
             }, 300);
         };
 
-        // --- Calendar Logic ---
         window.renderCalendar = function() {
             calendarDaysEl.innerHTML = '';
             const year = currentDate.getFullYear();
@@ -720,21 +640,16 @@
             const firstDay = new Date(year, month, 1).getDay();
             const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-            // Blanks
             for (let i = 0; i < firstDay; i++) {
                 calendarDaysEl.appendChild(document.createElement('div'));
             }
 
-            // Days
             for (let i = 1; i <= daysInMonth; i++) {
                 const dayEl = document.createElement('div');
                 const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`;
                 
                 dayEl.className = 'day-cell p-2 text-center cursor-pointer rounded-lg hover:bg-gray-100 relative';
                 dayEl.innerHTML = `<span class="z-10 relative">${i}</span>`;
-                
-                // 簡易表示: 予約があるかどうかだけで判定せず、空きがあるかどうかも厳密には計算可能だが
-                // カレンダー表示時点では「選択可能」としておき、詳細選択でブロックするスタイルを維持
                 
                 dayEl.classList.add('available', 'text-gray-700');
                 dayEl.addEventListener('click', () => window.selectDate(dateStr, i));
@@ -750,14 +665,12 @@
             
             timeSelectionDateDisplay.textContent = displayDate;
             
-            // Highlight Grid
             document.querySelectorAll('.day-cell').forEach(el => el.classList.remove('bg-brand-500', 'text-white'));
             event.target.closest('.day-cell').classList.add('bg-brand-500', 'text-white');
             event.target.closest('.day-cell').classList.remove('text-gray-700');
 
             window.generateTimeSlots();
             
-            // View Transition
             formPlaceholder.classList.add('hidden');
             bookingFormContainer.classList.add('hidden');
             successView.classList.add('hidden');
@@ -767,13 +680,11 @@
         window.generateTimeSlots = function() {
             timeSlotsContainer.innerHTML = '';
             
-            // Assume 60min min duration for checking availability
-            const slotsNeeded = 2; // 60 min = 2 slots
+            const slotsNeeded = 2; 
             const dailySlots = calculateDailyAvailability(selectedDateString);
 
-            const startTime = 8 * 60; // 8:00
-            const endTime = 23 * 60;  // 23:00
-            // Last booking must end by 23:00, so last start is 22:00 (for 60min)
+            const startTime = 8 * 60; 
+            const endTime = 23 * 60;  
             const maxStartIndex = dailySlots.length - slotsNeeded;
 
             for (let i = 0; i <= maxStartIndex; i++) {
@@ -782,8 +693,6 @@
                 const minute = time % 60;
                 const timeStr = `${hour}:${minute.toString().padStart(2, '0')}`;
                 
-                // 指定期間 (i から i + slotsNeeded) の間で、最大予約数を探す
-                // 期間中のどの30分枠も、定員に達していない必要がある
                 let maxOccupancyInPeriod = 0;
                 for (let j = 0; j < slotsNeeded; j++) {
                     if (dailySlots[i + j] > maxOccupancyInPeriod) {
@@ -832,25 +741,20 @@
             formDateDisplay.textContent = `${displayDate} ${timeStr}〜`;
             selectedTimeInput.value = timeStr;
 
-            // Calculate Max Duration for this start time
             const dailySlots = calculateDailyAvailability(selectedDateString);
             const [h, min] = timeStr.split(':').map(Number);
             const startSlotIndex = (h - 8) * 2 + (min === 30 ? 1 : 0);
             
             let maxDurationSlots = 0;
-            // Check consecutive slots from start until end of day
             for (let i = startSlotIndex; i < dailySlots.length; i++) {
                 if (dailySlots[i] >= TOTAL_SEATS) {
-                    break; // Stop at first full slot
+                    break; 
                 }
                 maxDurationSlots++;
             }
             
-            // Populate Dropdown
             formDurationSelect.innerHTML = '';
-            // min duration 1h (2 slots)
             if (maxDurationSlots >= 2) {
-                // Generate options in 30min increments
                 for (let s = 2; s <= maxDurationSlots; s++) {
                     const minutes = s * 30;
                     const hours = minutes / 60;
@@ -860,7 +764,6 @@
                     formDurationSelect.appendChild(option);
                 }
             } else {
-                // Should not happen if button was clickable, but just in case
                 const option = document.createElement('option');
                 option.value = "";
                 option.textContent = "予約不可";
@@ -912,7 +815,6 @@
             const email = document.getElementById('email-input').value;
             const plan = document.getElementById('plan-display').value;
             const time = document.getElementById('selected-time-input').value;
-            // Get duration from the form select
             const duration = parseInt(formDurationSelect.value, 10);
 
             const bookingData = {
