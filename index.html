@@ -366,7 +366,7 @@
                     <div class="flex flex-col md:flex-row flex-1 overflow-hidden h-full md:h-[600px]">
                         
                         <!-- Left: Calendar View (Scrollable) -->
-                        <div class="w-full md:w-1/2 p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-100 bg-gray-50 overflow-y-auto" id="calendar-section">
+                        <div class="w-full md:w-1/2 p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-100 bg-gray-50 overflow-y-auto md:block" id="calendar-section">
                             <h2 class="text-2xl font-bold text-gray-900 mb-2">予約日時を選択</h2>
                             <p class="text-sm text-gray-500 mb-6">ご希望の日付をタップしてください</p>
                             
@@ -399,7 +399,7 @@
                         </div>
 
                         <!-- Right: Interactive Panel (Scrollable) -->
-                        <div class="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-center bg-white relative overflow-y-auto">
+                        <div id="right-panel" class="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-center bg-white relative overflow-y-auto hidden md:flex">
                             
                             <div id="form-placeholder" class="text-center text-gray-400 flex flex-col items-center justify-center h-full min-h-[200px]">
                                 <svg class="w-16 h-16 mb-4 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -437,6 +437,30 @@
                                             <option value="回数券">回数券</option>
                                         </select>
                                     </div>
+
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wide">利用時間</label>
+                                        <select id="form-duration-select" required class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-500 focus:bg-white transition outline-none">
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wide">お名前</label>
+                                        <input type="text" id="name-input" required class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-500 focus:bg-white transition outline-none" placeholder="山田 太郎">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wide">メールアドレス</label>
+                                        <input type="email" id="email-input" required class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-500 focus:bg-white transition outline-none" placeholder="taro@example.com">
+                                    </div>
+                                    
+                                    <div class="pt-4 mt-auto">
+                                        <button type="submit" id="submit-btn" class="w-full bg-brand-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-brand-700 transition shadow-md hover:shadow-lg transform active:scale-95 flex items-center justify-center">
+                                            <span class="btn-text">予約を確定する</span>
+                                            <div class="spinner hidden ml-2"></div>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
 
                             <div id="success-view" class="hidden h-full flex flex-col items-center justify-center text-center animate-pulse-once min-h-[300px]">
                                 <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mb-4">
@@ -698,6 +722,8 @@
         const panel = document.getElementById('modal-panel');
         const calendarDaysEl = document.getElementById('calendar-days');
         const monthYearEl = document.getElementById('month-year');
+        const calendarSection = document.getElementById('calendar-section');
+        const rightPanel = document.getElementById('right-panel');
         
         const formPlaceholder = document.getElementById('form-placeholder');
         const timeSlotSelection = document.getElementById('time-slot-selection');
@@ -746,6 +772,17 @@
             }, 10);
             renderCalendar(); 
             document.body.style.overflow = 'hidden';
+            
+            // Initial state for SP: Show Calendar, Hide Right Panel
+            calendarSection.classList.remove('hidden');
+            rightPanel.classList.add('hidden');
+            rightPanel.classList.remove('flex'); // Ensure flex is removed if it was added
+            
+            // Reset right panel content to placeholder
+            formPlaceholder.classList.remove('hidden');
+            timeSlotSelection.classList.add('hidden');
+            bookingFormContainer.classList.add('hidden');
+            successView.classList.add('hidden');
         };
 
         window.closeModal = function() {
@@ -800,6 +837,12 @@
 
             window.generateTimeSlots();
             
+            // Switch views based on device
+            // SP: Hide calendar, Show Right Panel (Time Selection)
+            calendarSection.classList.add('hidden');
+            rightPanel.classList.remove('hidden');
+            
+            // PC/SP Common: Update Right Panel Content
             formPlaceholder.classList.add('hidden');
             bookingFormContainer.classList.add('hidden');
             successView.classList.add('hidden');
@@ -904,8 +947,15 @@
         };
 
         window.backToPlaceholder = function() {
+            // SP: Show Calendar, Hide Right Panel
+            calendarSection.classList.remove('hidden');
+            rightPanel.classList.add('hidden');
+            
+            // PC/SP Common: Reset views
             timeSlotSelection.classList.add('hidden');
             formPlaceholder.classList.remove('hidden');
+            
+            // Reset selection styles
             document.querySelectorAll('.day-cell').forEach(el => el.classList.remove('bg-brand-500', 'text-white'));
         };
 
@@ -915,13 +965,21 @@
         };
 
         window.resetBookingView = function() {
+            // Reset Views
             formPlaceholder.classList.remove('hidden');
             timeSlotSelection.classList.add('hidden');
             bookingFormContainer.classList.add('hidden');
             successView.classList.add('hidden');
+            
+            // Reset Calendar Selection
             document.querySelectorAll('.day-cell').forEach(el => el.classList.remove('bg-brand-500', 'text-white'));
             
+            // Reset Form
             document.getElementById('booking-form').reset();
+            
+            // Reset SP view state (Show calendar, Hide right panel)
+            calendarSection.classList.remove('hidden');
+            rightPanel.classList.add('hidden');
         };
 
         function getDayName(dateStr) {
