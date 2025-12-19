@@ -57,7 +57,7 @@
         
         .hero-pattern {
             background-color: #0c4a6e;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e6b96' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e6b96' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
         .calendar-grid {
@@ -237,19 +237,20 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Spot Usage -->
                     <div class="bg-brand-800/50 backdrop-blur-sm border border-brand-700 rounded-2xl p-8 flex flex-col hover:bg-brand-800 transition animate-on-scroll">
-                        <h3 class="text-xl font-bold mb-2">ドロップイン</h3>
+                        <h3 class="text-xl font-bold mb-2">スポット利用</h3>
                         <p class="text-brand-300 text-sm mb-6">少しだけ使いたい時に</p>
                         <div class="mb-6">
-                            <span class="text-4xl font-bold">500</span><span class="text-sm">円 / 時間</span>
+                            <span class="text-4xl font-bold">250</span><span class="text-sm">円 / 30分</span>
                         </div>
                         <ul class="space-y-3 mb-8 flex-grow text-sm text-gray-200">
-                            <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-brand-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>1日最大 2,000円</li>
-                            <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-brand-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>予約なしで利用OK</li>
+                            <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-brand-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>1日最大 4時間 (240分)</li>
+                            <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-brand-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>予約なしでも利用可（予約推奨）</li>
                         </ul>
-                        <button onclick="window.openModal()" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3 rounded-lg transition">予約する</button>
                     </div>
 
+                    <!-- Monthly (Featured) -->
                     <div class="bg-white text-slate-800 rounded-2xl p-8 flex flex-col shadow-2xl transform scale-105 relative z-10 animate-on-scroll">
                         <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-yellow-500 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wide">Most Popular</div>
                         <h3 class="text-xl font-bold mb-2 text-brand-900">月額使い放題</h3>
@@ -262,9 +263,9 @@
                             <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-brand-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>ロッカー利用無料</li>
                             <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-brand-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>住所利用・登記可能</li>
                         </ul>
-                        <button onclick="window.openModal()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-lg shadow-lg transition">今すぐ申し込む</button>
                     </div>
 
+                    <!-- Ticket -->
                     <div class="bg-brand-800/50 backdrop-blur-sm border border-brand-700 rounded-2xl p-8 flex flex-col hover:bg-brand-800 transition animate-on-scroll">
                         <h3 class="text-xl font-bold mb-2">回数券</h3>
                         <p class="text-brand-300 text-sm mb-6">週に数回ペースの方に</p>
@@ -275,7 +276,6 @@
                             <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-brand-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>有効期限3ヶ月</li>
                             <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-brand-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>友人とのシェアOK</li>
                         </ul>
-                        <button onclick="window.openModal()" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3 rounded-lg transition">購入する</button>
                     </div>
                 </div>
             </div>
@@ -313,10 +313,15 @@
         <section class="py-20 bg-slate-100 text-center">
              <div class="container mx-auto px-6 animate-on-scroll">
                 <h2 class="text-3xl font-serif font-bold text-brand-900 mb-4">さあ、自分のための時間を始めよう。</h2>
-                <p class="text-slate-600 mb-8">まずは見学、または1時間からのドロップイン利用から。</p>
-                <button onclick="window.openModal()" class="bg-brand-600 text-white font-bold py-4 px-12 rounded-full hover:bg-brand-700 transition transform hover:-translate-y-1 shadow-xl">
-                    予約・見学を申し込む
-                </button>
+                <p class="text-slate-600 mb-8">まずは30分のドロップイン利用から。</p>
+                <div class="flex flex-col items-center gap-4">
+                    <button onclick="window.openModal()" class="bg-brand-600 text-white font-bold py-4 px-12 rounded-full hover:bg-brand-700 transition transform hover:-translate-y-1 shadow-xl">
+                        席を予約する
+                    </button>
+                    <a href="mailto:contact@example.com" class="text-sm text-slate-500 hover:text-brand-600 underline">
+                        見学・お問い合わせはこちら
+                    </a>
+                </div>
              </div>
         </section>
     </main>
@@ -417,6 +422,16 @@
                                     <input type="hidden" id="selected-time-input" name="time">
                                     
                                     <div>
+                                        <label class="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wide">利用プラン</label>
+                                        <select id="plan-select" class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-500 focus:bg-white transition outline-none">
+                                            <!-- Updated option text -->
+                                            <option value="スポット利用">スポット利用 (席確保)</option>
+                                            <option value="月額会員">月額会員</option>
+                                            <option value="回数券">回数券</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
                                         <label class="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wide">利用時間</label>
                                         <select id="form-duration-select" required class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-500 focus:bg-white transition outline-none">
                                         </select>
@@ -431,8 +446,6 @@
                                         <input type="email" id="email-input" required class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-500 focus:bg-white transition outline-none" placeholder="taro@example.com">
                                     </div>
                                     
-                                    <input type="hidden" id="plan-display" value="ドロップイン">
-
                                     <div class="pt-4 mt-auto">
                                         <button type="submit" id="submit-btn" class="w-full bg-brand-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-brand-700 transition shadow-md hover:shadow-lg transform active:scale-95 flex items-center justify-center">
                                             <span class="btn-text">予約を確定する</span>
@@ -583,6 +596,7 @@
         const formDateDisplay = document.getElementById('form-date-display');
         const selectedTimeInput = document.getElementById('selected-time-input');
         const formDurationSelect = document.getElementById('form-duration-select');
+        const planSelect = document.getElementById('plan-select');
         
         let currentDate = new Date();
         let selectedDateString = ''; 
@@ -680,7 +694,7 @@
         window.generateTimeSlots = function() {
             timeSlotsContainer.innerHTML = '';
             
-            const slotsNeeded = 2; 
+            const slotsNeeded = 1; 
             const dailySlots = calculateDailyAvailability(selectedDateString);
 
             const startTime = 8 * 60; 
@@ -754,13 +768,13 @@
             }
             
             formDurationSelect.innerHTML = '';
-            if (maxDurationSlots >= 2) {
-                for (let s = 2; s <= maxDurationSlots; s++) {
+            if (maxDurationSlots >= 1) {
+                for (let s = 1; s <= maxDurationSlots; s++) {
                     const minutes = s * 30;
                     const hours = minutes / 60;
                     const option = document.createElement('option');
                     option.value = minutes;
-                    option.textContent = `${hours}時間`;
+                    option.textContent = minutes < 60 ? `${minutes}分` : `${hours}時間`;
                     formDurationSelect.appendChild(option);
                 }
             } else {
@@ -813,7 +827,7 @@
             e.preventDefault();
             const name = document.getElementById('name-input').value;
             const email = document.getElementById('email-input').value;
-            const plan = document.getElementById('plan-display').value;
+            const plan = document.getElementById('plan-select').value;
             const time = document.getElementById('selected-time-input').value;
             const duration = parseInt(formDurationSelect.value, 10);
 
