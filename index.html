@@ -63,7 +63,7 @@
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
+            gap: 2px;
         }
         .day-cell {
             aspect-ratio: 1;
@@ -351,12 +351,11 @@
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
                 
-                <!-- Updated: PC modal size fixed. Height fixed at 550px -->
-                <!-- Use h-[550px] for consistent height on both SP and PC, removing responsive classes that changed height -->
-                <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-3xl opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95 flex flex-col h-[550px]" id="modal-panel">
+                <!-- Updated: PC modal height fixed at 550px -->
+                <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-3xl opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95 flex flex-col h-[600px] md:h-[550px] max-h-[90vh]" id="modal-panel">
                     
-                    <!-- Modal Header: Unified for both SP and PC -->
-                    <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center shrink-0 bg-white z-20">
+                    <!-- Modal Header -->
+                    <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center shrink-0 bg-white z-20 sticky top-0">
                         <button id="modal-back-btn" onclick="window.handleBack()" class="text-gray-400 hover:text-gray-600 hidden">
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -371,14 +370,13 @@
                     </div>
 
                     <!-- Modal Body -->
-                    <!-- Removed relative positioning and forced height inheritance to ensure children fill the space correctly -->
                     <div class="flex flex-col md:flex-row flex-1 overflow-hidden h-full">
                         
                         <!-- Step 1: Calendar View (Left on PC, Step 1 on SP) -->
-                        <div class="w-full md:w-[320px] shrink-0 p-6 border-b md:border-b-0 md:border-r border-gray-100 bg-gray-50 overflow-y-auto md:block" id="step-calendar">
-                            <p class="text-sm text-gray-500 mb-6 text-center md:text-left">ご希望の日付をタップしてください</p>
+                        <div class="w-full md:w-[320px] shrink-0 p-4 border-b md:border-b-0 md:border-r border-gray-100 bg-gray-50 overflow-y-auto md:block" id="step-calendar">
+                            <p class="text-sm text-gray-500 mb-2 text-center md:text-left">ご希望の日付をタップしてください</p>
                             
-                            <div class="flex justify-between items-center mb-6 bg-white p-3 rounded-lg shadow-sm">
+                            <div class="flex justify-between items-center mb-4 bg-white p-2 rounded-lg shadow-sm">
                                 <button id="prev-month" class="p-2 rounded-full hover:bg-gray-100 text-gray-600 transition">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                                 </button>
@@ -392,7 +390,7 @@
                                 <!-- Headers and Days Injected Here via JS -->
                             </div>
                             
-                            <div class="mt-6 flex items-center justify-center space-x-4 text-xs text-gray-500">
+                            <div class="mt-4 flex items-center justify-center space-x-4 text-xs text-gray-500">
                                 <div class="flex items-center"><span class="w-3 h-3 bg-blue-100 border border-blue-200 rounded-sm mr-1"></span>余裕あり</div>
                                 <div class="flex items-center"><span class="w-3 h-3 bg-orange-100 border border-orange-200 rounded-sm mr-1"></span>混雑</div>
                                 <div class="flex items-center"><span class="w-3 h-3 bg-gray-200 rounded-sm mr-1"></span>満席</div>
@@ -400,7 +398,7 @@
                         </div>
 
                         <!-- Step 2 & 3: Interactive Panel (Right on PC, Step 2/3 on SP) -->
-                        <div id="step-panel" class="w-full flex-1 p-6 md:p-8 flex flex-col justify-center bg-white relative overflow-y-auto hidden md:flex">
+                        <div id="step-panel" class="w-full flex-1 p-6 md:p-8 flex flex-col bg-white relative overflow-y-auto hidden md:flex">
                             
                             <!-- Placeholder (PC only initial state) -->
                             <div id="view-placeholder" class="text-center text-gray-400 flex flex-col items-center justify-center h-full min-h-[200px]">
@@ -410,19 +408,18 @@
 
                             <!-- Time Selection View -->
                             <div id="view-time" class="hidden h-full flex flex-col w-full">
-                                <div class="mb-4 pt-1">
+                                <div class="mb-4 pt-1 shrink-0">
                                     <h4 class="text-lg font-bold text-gray-900 mb-1" id="time-selection-date-display">--月--日</h4>
                                     <p class="text-xs text-gray-500">開始時間を選択してください。<br>（〇: 1時間以上の空きあり / ×: 満席）</p>
                                 </div>
-                                <!-- Added pt-2 to ensure top items are not hidden behind header overlap in some cases -->
-                                <div id="time-slots-container" class="time-slot-grid overflow-y-auto pr-2 flex-grow pb-4 pt-2">
+                                <div id="time-slots-container" class="time-slot-grid overflow-y-auto pr-2 flex-grow pb-4">
                                     <!-- JS Generated Time Slots -->
                                 </div>
                             </div>
 
                             <!-- Form View -->
                             <div id="view-form" class="hidden h-full flex flex-col w-full">
-                                <div class="mb-6 pt-1">
+                                <div class="mb-6 pt-1 shrink-0">
                                      <h4 class="text-lg font-bold text-gray-900" id="form-date-display">--月--日 --:--</h4>
                                      <p class="text-xs text-gray-500">予約者情報を入力してください</p>
                                 </div>
@@ -454,7 +451,7 @@
                                         <input type="email" id="email-input" required class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-500 focus:bg-white transition outline-none" placeholder="taro@example.com">
                                     </div>
                                     
-                                    <div class="pt-4 mt-auto">
+                                    <div class="pt-4 mt-auto shrink-0">
                                         <button type="submit" id="submit-btn" class="w-full bg-brand-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-brand-700 transition shadow-md hover:shadow-lg transform active:scale-95 flex items-center justify-center">
                                             <span class="btn-text">予約を確定する</span>
                                             <div class="spinner hidden ml-2"></div>
@@ -709,7 +706,7 @@
             }
         });
 
-        // --- Booking Modal Logic ---
+        // --- Booking Modal Logic (Global Scope) ---
         const modal = document.getElementById('booking-modal');
         const backdrop = document.getElementById('modal-backdrop');
         const panel = document.getElementById('modal-panel');
@@ -834,7 +831,22 @@
             renderCalendar(); 
             document.body.style.overflow = 'hidden';
             
-            // Initialize View
+            // Reset view state based on screen size
+            if (window.innerWidth < 768) {
+                calendarSection.classList.remove('hidden');
+                rightPanel.classList.add('hidden');
+            } else {
+                calendarSection.classList.remove('hidden');
+                rightPanel.classList.remove('hidden');
+            }
+            
+            // Reset right panel content to placeholder
+            formPlaceholder.classList.remove('hidden');
+            timeSlotSelection.classList.add('hidden');
+            bookingFormContainer.classList.add('hidden');
+            successView.classList.add('hidden');
+            
+            // Initial View
             switchView('calendar');
         };
 
@@ -899,7 +911,7 @@
                 const dayEl = document.createElement('div');
                 const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`;
                 
-                dayEl.className = 'day-cell p-2 text-center rounded-lg relative border border-transparent';
+                dayEl.className = 'day-cell p-1 text-center rounded-lg relative border border-transparent';
                 
                 const dailySlots = calculateDailyAvailability(dateStr);
                 let hasFullSlot = false;
